@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">  
+    <h:head>
+        <title>Library</title>
+        <f:event type="preRenderView" listener="#{knjigeController.onRefresh()}"></f:event>
+    </h:head>
+    <h:body>
+       <h:form>
+           <h:commandButton value="Login" action="login" rendered="#{not knjigeController.loggedin}"></h:commandButton>
+           <h:commandButton value="Logout" action="logout" rendered="#{knjigeController.loggedin}"></h:commandButton>
+       <h:outputText value="#{knjigeController.errorMessage}" style="color:red"></h:outputText>
+       <br/>
+       Filter by:
+       <br/>
+       Title: 
+       <h:inputText value="#{knjigeController.filter_by_title}"></h:inputText>
+       Author:
+       <h:inputText value="#{knjigeController.filter_by_author}"></h:inputText>
+       <h:commandButton value="Sort" action="#{knjigeController.filter()}"></h:commandButton>
+       <h:commandButton value="Descending by year" action="#{knjigeController.desc_sort_by_year()}"></h:commandButton>
+           <h:dataTable value="#{knjigeController.knjige}" var="knjiga">       
+           <h:column>           
+               <f:facet name="header">               
+                   Image
+               </f:facet>
+               <h:graphicImage library="images" name="#{knjiga.slika}"></h:graphicImage>
+           </h:column>
+           <h:column>           
+               <f:facet name="header">               
+                   Title
+               </f:facet>
+               <h:outputText value="#{knjiga.naslov}"></h:outputText>
+           </h:column>
+           <h:column>           
+               <f:facet name="header">               
+                   Author
+               </f:facet>
+               <h:outputText value="#{knjiga.autor}"></h:outputText>
+           </h:column>
+           <h:column>           
+               <f:facet name="header">               
+                   Num of pages
+               </f:facet>
+               <h:outputText value="#{knjiga.brStr}"></h:outputText>
+           </h:column>
+           <h:column>           
+               <f:facet name="header">               
+                   Year
+               </f:facet>
+               <h:outputText value="#{knjiga.godina}"></h:outputText>
+           </h:column>
+           <h:column>           
+               <f:facet name="header">               
+                   Buy
+               </f:facet>
+               <h:commandButton value="Buy #{knjiga.naslov}" action="#{knjigeController.buy(knjiga)}"></h:commandButton>
+           </h:column>
+            <h:column>           
+               <f:facet name="header">               
+                   Delete
+               </f:facet>
+               <h:commandButton value="Delete #{knjiga.naslov}" action="#{knjigeController.deleteKnjiga(knjiga)}"></h:commandButton>
+           </h:column>
+       </h:dataTable>
+       </h:form>
+    </h:body>
+</html>
+
+
+
+
+
+
+
+

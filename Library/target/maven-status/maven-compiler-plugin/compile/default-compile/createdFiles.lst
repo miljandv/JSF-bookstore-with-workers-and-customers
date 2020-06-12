@@ -1,0 +1,10 @@
+controllers\KnjigeController.class
+util\DB.class
+util\dao\KnjigeDAO.class
+com\mycompany\library\JAXRSConfiguration.class
+com\mycompany\library\resources\JavaEE8Resource.class
+beans\Knjiga.class
+beans\Narudzbina.class
+util\dao\NarudzbineDAO.class
+beans\Korisnik.class
+util\dao\KorisniciDAO.class
